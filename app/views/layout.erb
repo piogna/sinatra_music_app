@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!--
+  <head>
+    <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
-  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
-  <!--
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <!--
     application.css is where you put your styles
   -->
-  <link rel="stylesheet" href="/stylesheets/application.css">
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type="text/javascript" src="/javascript/bootstrap.js"></script>
-  <script src="/javascript/application.js"></script>
-
-  <title></title>
-</head>
-<body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" data-toggle="collapse",
+    <link rel="stylesheet" href="/stylesheets/application.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/bootstrap.js"></script>
+    <script src="/javascript/application.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-toggle="collapse",
       data-target="#music-navbar" aria-expanded="false">
-      <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Music App</a>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Music App</a>
+        </div>
+        <!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="music-navbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/tracks">Tracks</a></li>
+            <% if user_authenticated? %>
+              <li><a href="/tracks/new">New Track</a></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_authenticated? %>
+              <li><a href="/sessions/logout">Logout</a></li>
+            <% else %>
+              <li><a href="/sessions/login">Login</a></li>
+              <li><a href="/sessions/register">Register</a></li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- /.collapse navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <div class="container-fluid">
+      <%= yield %>
     </div>
-    <!-- /.navbar-header -->
-    <div class="collapse navbar-collapse" id="music-navbar">
-      <ul class="nav navbar-nav">
-        <li><a href="/tracks">Tracks</a></li>
-        <li><a href="/tracks/new">New Track</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <% if user_authenticated? %>
-        <li><a href="/sessions/logout">Logout</a></li>
-      <% else %>
-        <li><a href="/sessions/login">Login</a></li>
-        <li><a href="/sessions/register">Register</a></li>
-      <% end %>
-      </ul>
-    </div>
-    <!-- /.collapse navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
-</nav>
-<div class="container-fluid">
-  <%= yield %>
-  </div>
-</body>
+  </body>
 </html>

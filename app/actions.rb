@@ -9,18 +9,21 @@ get '/tracks' do
 end
 
 get '/tracks/new' do
+  redirect_if_not_authenticated
   @track = Track.new
   erb :'tracks/new'
 end
 
 post '/tracks/new' do
+  redirect_if_not_authenticated
   url = params[:url] == "" ? nil : params[:url]
   url_text = params[:url_text] == "" ? nil : params[:url_text]
   @track = Track.new(
     title: params[:title],
     author: params[:author],
     url: url,
-    url_text: url_text
+    url_text: url_text,
+    user: User.find(session[:user_id])
   )
   if @track.save
     redirect '/tracks'
@@ -75,4 +78,8 @@ end
 
 def user_authenticated?
   !session["user_id"].nil?
+end
+
+def redirect_if_not_authenticated
+  redirect '/sessions/login' unless user_authenticated?
 end
