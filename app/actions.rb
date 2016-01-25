@@ -15,11 +15,12 @@ end
 
 post '/tracks/new' do
   url = params[:url] == "" ? nil : params[:url]
+  url_text = params[:url_text] == "" ? nil : params[:url_text]
   @track = Track.new(
     title: params[:title],
     author: params[:author],
     url: url,
-    url_text: params[:url_text]
+    url_text: url_text
   )
   if @track.save
     redirect '/tracks'

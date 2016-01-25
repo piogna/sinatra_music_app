@@ -1,0 +1,9 @@
+.error-messages {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error-messages ul {
+  list-style-type: none;
+  padding: 0;
+}

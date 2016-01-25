@@ -1,32 +1,37 @@
 <% if @track.errors.any? %>
-  <div>
-    <strong>Some issues with your message, please fix them:</strong>
-    <ul>
-      <% @track.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="error-messages">
+        <strong>Some issues with your message, please fix them:</strong>
+        <ul>
+          <% @track.errors.full_messages.each do |message| %>
+            <li class="list-group-item list-group-item-danger"><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 <% end %>
-
-<form action="/tracks/new" method="post">
-  <div>
-    <label>Title:</label>
-    <input type="text" name="title" value="<%= @track.title %>" placeholder="">
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <form action="/tracks/new" method="post">
+      <div class="form-group">
+        <label>Title:</label>
+        <input class="form-control" type="text" name="title" value="<%= @track.title %>" placeholder="">
+      </div>
+      <div class="form-group">
+        <label>Author:</label>
+        <input class="form-control" type="text" name="author" value="<%= @track.author %>" placeholder="">
+      </div>
+      <div class="form-group">
+        <label>URL:</label>
+        <input class="form-control" type="text" name="url" value="<%= @track.url %>">
+      </div>
+      <div class="form-group">
+        <label>URL Text:</label>
+        <input class="form-control" type="text" name="url_text" value="<%= @track.url_text %>" placeholder="">
+      </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
   </div>
-  <div>
-    <label>Author:</label>
-    <input type="text" name="author" value="<%= @track.author %>" placeholder="">
-  </div>
-  <div>
-    <label>URL:</label>
-    <input type="text" name="url" value="<%= @track.url %>">
-  </div>
-  <div>
-    <label>URL Text:</label>
-    <input type="text" name="url_text" value="<%= @track.url_text %>" placeholder="">
-  </div>
-  <div>
-    <input type="submit" value="Submit" placeholder="">
-  </div>
-</form>
+</div>
