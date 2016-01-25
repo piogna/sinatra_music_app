@@ -1,0 +1,9 @@
+<% tracks.each do |track| %>
+  <div class="track">
+    <h3><%= track.title %></h3>
+    <small>(by: <%= track.author %>)</small>
+    <% if track.url %>
+      <a href='<%= track.url %>'><%= track.url_text %></a>
+    <% end %>
+  </div>
+<% end %>
