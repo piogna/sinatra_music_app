@@ -1,0 +1,32 @@
+<% if @track.errors.any? %>
+  <div>
+    <strong>Some issues with your message, please fix them:</strong>
+    <ul>
+      <% @track.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form action="/tracks/new" method="post">
+  <div>
+    <label>Title:</label>
+    <input type="text" name="title" value="<%= @track.title %>" placeholder="">
+  </div>
+  <div>
+    <label>Author:</label>
+    <input type="text" name="author" value="<%= @track.author %>" placeholder="">
+  </div>
+  <div>
+    <label>URL:</label>
+    <input type="text" name="url" value="<%= @track.url %>">
+  </div>
+  <div>
+    <label>URL Text:</label>
+    <input type="text" name="url_text" value="<%= @track.url_text %>" placeholder="">
+  </div>
+  <div>
+    <input type="submit" value="Submit" placeholder="">
+  </div>
+</form>
