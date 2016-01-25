@@ -28,3 +28,51 @@ post '/tracks/new' do
     erb :'tracks/new'
   end
 end
+
+get '/sessions/register' do
+  @user = User.new
+  erb :'sessions/register'
+end
+
+post '/sessions/register' do
+  @user = User.new(
+    username: params[:username],
+    password: params[:password],
+    password_confirmation: params[:password_confirmation]
+  )
+
+  if @user.save
+    session["user_id"] ||= @user.id
+    redirect '/tracks'
+  else
+    redirect '/sessions/register'
+  end
+end
+
+get '/sessions/login' do
+  @user = User.new
+  erb :'sessions/login'
+end
+
+post '/sessions/login' do
+  user = User.find_by_username(params[:username])
+  if user && user.authenticate(params[:password])
+    session["user_id"] ||= user.id
+    redirect '/tracks'
+  else
+    redirect '/sessions/not-found'
+  end
+end
+
+get '/sessions/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
+
+get '/sessions/not-found' do
+  erb :'sessions/not_found'
+end
+
+def user_authenticated?
+  !session["user_id"].nil?
+end

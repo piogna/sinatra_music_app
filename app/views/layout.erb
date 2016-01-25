@@ -37,6 +37,14 @@
         <li><a href="/tracks">Tracks</a></li>
         <li><a href="/tracks/new">New Track</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <% if user_authenticated? %>
+        <li><a href="/sessions/logout">Logout</a></li>
+      <% else %>
+        <li><a href="/sessions/login">Login</a></li>
+        <li><a href="/sessions/register">Register</a></li>
+      <% end %>
+      </ul>
     </div>
     <!-- /.collapse navbar-collapse -->
   </div>
