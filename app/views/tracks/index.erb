@@ -1,13 +1,29 @@
 <% @tracks.each do |track| %>
   <div class="track">
-    <h3><%= track.title %></h3>
-    <small>(by: <%= track.author %>)</small>
-    <% if track.url %>
-      <a href="<%= track.url %>"><%= track.url_text %></a>
-    <% end %>
-    <% if track.user %>
-      <br>
-      <small>Created by: <%= track.user.username %></small>
-    <% end %>
+    <div class="row">
+      <div class="col-md-4">
+        <img class="vote-button <%= user_has_upvoted?(track.id, current_user) ?
+        "upvoted" : "nonvoted" %>" src="/images/place_holder.png"
+        data-user="<%= current_user %>"
+        data-track="<%= track.id %>">
+        <p><%= num_of_upvotes(track.id) %></p>
+      </div>
+      <div class="col-md-8">
+        <h3><%= track.title %></h3>
+        <small>(by: <%= track.author %>)</small>
+        <% if track.url %>
+          <a href="<%= track.url %>"><%= track.url_text %></a>
+        <% end %>
+        <% if track.user %>
+          <br>
+          <small>Created by: <%= track.user.username %></small>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
